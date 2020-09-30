@@ -4,13 +4,14 @@ import static org.junit.Assert.assertTrue;
 
 import org.openqa.selenium.WebElement;
 
+import com.bennaylor.common.BasePage;
 import com.bennaylor.seleniumpages.SeleniumHomePage;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-public class SeleniumHomePageSteps {
+public class SeleniumHomePageSteps extends BasePage {
 
 	SeleniumHomePage seleniumHomepage = new SeleniumHomePage();
 	
@@ -25,8 +26,10 @@ public class SeleniumHomePageSteps {
 	}
 
 	@Then("I verify that the header navbar is displayed")
-	public void i_verify_that_the_page_displays_search_text_box() {
+	public void i_verify_that_the_page_displays_search_text_box() throws InterruptedException {
 	    WebElement navbar = seleniumHomepage.getHeaderNavbar();
+	    highlight(driver, navbar);
+	    Thread.sleep(1000);
 	    assertTrue(navbar.isDisplayed());
 	    
 	}
